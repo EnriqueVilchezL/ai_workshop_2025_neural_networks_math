@@ -60,7 +60,10 @@ class NeuralNetworkVisualizer:
                 if isinstance(submodule, Dense):
                     module_count += 1
                     if module_count == 1:
-                        activations.append(submodule.tensors['X'])
+                        if submodule.tensors['X'].shape[1] > 20:
+                            activations.append(np.concatenate((submodule.tensors['X'][:, 0:10], submodule.tensors['X'][:, -10:]), axis=1))
+                        else:
+                            activations.append(submodule.tensors['X'])
                     
                 if isinstance(submodule, Activation):
                     activations.append(submodule.tensors['Y'])
