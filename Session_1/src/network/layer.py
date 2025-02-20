@@ -10,6 +10,9 @@ class Dense(Layer):
         self.gradients['dW'] = None
         self.gradients['dB'] = None
 
+        self.input_size : int = inputs_size
+        self.output_size : int = outputs_size
+
         self.parameters = {
             'W': 0.01 * np.random.randn(inputs_size, outputs_size),
             'B': 0.01 * np.random.randn(outputs_size)
