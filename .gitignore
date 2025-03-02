@@ -173,3 +173,4 @@ cython_debug/
 # Custom
 model.pkl
 model_bad.pkl
+model_3.pkl

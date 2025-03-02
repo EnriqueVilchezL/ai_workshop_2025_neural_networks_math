@@ -92,9 +92,15 @@ class NeuralNetworkVisualizer:
                     self.node_positions[i].append((x, y))
                 
                 # Draw 3 vertical suspensive dots for hidden nodes
-                self.canvas.create_text(x, y_spacing * 11, text=".", fill="gray")
-                self.canvas.create_text(x, y_spacing * 12, text=".", fill="gray")
-                self.canvas.create_text(x, y_spacing * 13, text=".", fill="gray")
+                self.canvas.create_oval(
+                    x - 1.5, 11 * y_spacing - 1.5, x + 1.5, 11 * y_spacing + 1.5, fill="black", outline="black"
+                )
+                self.canvas.create_oval(
+                    x - 1.5, 12 * y_spacing - 1.5, x + 1.5, 12 * y_spacing + 1.5, fill="black", outline="black"
+                )
+                self.canvas.create_oval(
+                    x - 1.5, 13 * y_spacing - 1.5, x + 1.5, 13 * y_spacing + 1.5, fill="black", outline="black"
+                )
 
                 for j in range(13, 23):
                     y = (j + 1) * y_spacing

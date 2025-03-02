@@ -72,20 +72,28 @@ class MNISTDrawingApp:
             self.GRID_SIZE * self.CELL_SIZE
         )
 
-    def draw(self, event : tk.Event) -> None:
+    def draw(self, event: tk.Event) -> None:
         x, y = event.x, event.y
         row, col = y // self.CELL_SIZE, x // self.CELL_SIZE
 
-        if 0 <= row < self.GRID_SIZE and 0 <= col < self.GRID_SIZE:
-            # Draw on the canvas
-            self.canvas.create_rectangle(
-                col * self.CELL_SIZE, row * self.CELL_SIZE,
-                (col + 1) * self.CELL_SIZE, (row + 1) * self.CELL_SIZE,
-                fill="white"
-            )
-            # Update the grid
-            self.grid[row, col] = 255
+        # Define relative neighbor positions (including the center cell)
+        neighbors = [(0,0)]
 
+        for dr, dc in neighbors:
+            nr, nc = row + dr, col + dc  # Compute neighbor coordinates
+
+            if 0 <= nr < self.GRID_SIZE and 0 <= nc < self.GRID_SIZE:
+                self.grid[nr, nc] = 255
+                
+                gray_value = int(self.grid[nr, nc])  # Get grayscale intensity (0-255)
+                color = f'#{gray_value:02x}{gray_value:02x}{gray_value:02x}'
+
+                # Draw on the canvas
+                self.canvas.create_rectangle(
+                    nc * self.CELL_SIZE, nr * self.CELL_SIZE,
+                    (nc + 1) * self.CELL_SIZE, (nr + 1) * self.CELL_SIZE,
+                    fill=color, outline=""
+                )
 
     def clear_grid(self):
         self.canvas.delete("all")
