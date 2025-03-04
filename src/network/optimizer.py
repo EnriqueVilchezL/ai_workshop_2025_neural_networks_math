@@ -23,7 +23,7 @@ class Optimizer(ABC):
     def update_module(self, module : NetworkModule) -> None:
         ...
 
-class StoichasticGradientDescent(Optimizer):
+class StochasticGradientDescent(Optimizer):
     def __init__(self, learning_rate : float) -> None:
         super().__init__(learning_rate)
     
